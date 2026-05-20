@@ -6,7 +6,8 @@
     "test": "tests"
   },
   "scripts": {
-    "test": "jest --runInBand",
+    "test": "jest --runInBand --forceExit",
+    "setup": "npm install --prefix services/logs-service && npm install --prefix services/users-service && npm install --prefix services/costs-service && npm install --prefix services/about-service",
     "start:logs": "node services/logs-service/server.js",
     "start:users": "node services/users-service/server.js",
     "start:costs": "node services/costs-service/server.js",

@@ -9,11 +9,12 @@ This repository implements the required RESTful microservices as four separate N
 
 ## Setup
 
-1. Copy `.env.example` to `.env` in each service folder.
-2. Set the same MongoDB Atlas URI in each service `.env`.
-3. Install dependencies:
-   - Root: `npm install`
-   - Each service in `services/*`: `npm install`
+1. Copy `.env.example` to `.env` in each service folder and set your MongoDB Atlas URI.
+2. Install all dependencies:
+   ```bash
+   npm install        # installs test dependencies at root
+   npm run setup      # installs dependencies inside each service
+   ```
 
 ## Run
 

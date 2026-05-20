@@ -13,7 +13,7 @@ app.get("/api/about", async (req, res) => {
 
 app.use((error, req, res, next) => {
   logger.error({ err: error }, "request_failed");
-  res.status(500).json(errorToJson(error));
+  res.status(error.status || 500).json(errorToJson(error));
 });
 
 module.exports = app;

@@ -1,5 +1,6 @@
 const request = require("supertest");
 const { MongoMemoryServer } = require("mongodb-memory-server");
+const mongoose = require("mongoose");
 
 jest.setTimeout(120000);
 
@@ -16,10 +17,6 @@ let connectUsersDb;
 let connectCostsDb;
 let connectLogsDb;
 let connectAboutDb;
-let usersMongoose;
-let costsMongoose;
-let logsMongoose;
-let aboutMongoose;
 
 beforeAll(async () => {
   mongoServer = await MongoMemoryServer.create();
@@ -47,19 +44,10 @@ beforeAll(async () => {
   Cost = require("../services/costs-service/models/cost.model");
   Log = require("../services/logs-service/models/log.model");
   MonthlyReport = require("../services/costs-service/models/monthly_report.model");
-  usersMongoose = require("../services/users-service/node_modules/mongoose");
-  costsMongoose = require("../services/costs-service/node_modules/mongoose");
-  logsMongoose = require("../services/logs-service/node_modules/mongoose");
-  aboutMongoose = require("../services/about-service/node_modules/mongoose");
 });
 
 afterAll(async () => {
-  await Promise.all([
-    usersMongoose.disconnect(),
-    costsMongoose.disconnect(),
-    logsMongoose.disconnect(),
-    aboutMongoose.disconnect()
-  ]);
+  await mongoose.disconnect();
   await mongoServer.stop();
 });
 
